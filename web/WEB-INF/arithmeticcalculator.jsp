@@ -16,11 +16,14 @@
         <form action="arithmeticcalculator" method="post">
             First <input type="text" name="first" value="${first}"><br>
             Second <input type="text" name="second" value="${second}"><br>
-            <input type="submit" value="+">
-            <input type="submit" value="-">
-            <input type="submit" value="*">
-            <input type="submit" value="%">
-            <h3>Result ${result}</h3>
+            <input type="submit" name ="submit" value="+">
+            <input type="submit" name ="submit" value="-">
+            <input type="submit" name ="submit" value="*">
+            <input type="submit" name ="submit" value="/">
+            <% 
+                session.setAttribute("result", "---");
+            %>
+            <h3>Result: ${result}</h3>
             <a href="agecalculator">Age Calculator</a>
         </form>
     </body>

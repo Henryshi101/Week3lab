@@ -23,11 +23,32 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String first = request.getParameter("first");
-        String second = request.getParameter("second");
-        request.setAttribute("result",first + second);
+        try{
+        int first = Integer.parseInt(request.getParameter("first"));
+        int second = Integer.parseInt(request.getParameter("second"));
+        int result = 0;
+        String op = request.getParameter("submit");
+        switch(op){
+            case "+":
+                result = first + second;
+                break;
+            case "-":
+                result = first - second;
+                break;    
+            case "*":
+                result = first * second;
+                break;
+            case "/":
+                result = first / second;
+                break;
+        }
+        
+        request.setAttribute("result",result);
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
-    }
+    }catch(Exception e){
+        request.setAttribute("result","invalid");
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+    }}
 
 
 }
